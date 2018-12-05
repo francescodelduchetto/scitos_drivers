@@ -44,7 +44,7 @@ class WirelessMonitor(StatusMonitor):
         
     def update(self):
         iwconfig = subprocess.check_output(['iwconfig'],stderr=subprocess.STDOUT).decode("utf-8")
-        m = re.search("%s.*ESSID:\"(\w+)\".*Bit Rate=(\d+).*Link Quality=(\d+)/(\d+)"%self._iface,iwconfig, re.DOTALL)
+        m = re.search("%s.*ESSID:\"(.+)\".*Bit Rate=(\d+).*Link Quality=(\d+)/(\d+)"%self._iface,iwconfig, re.DOTALL)
         if m is None:
             self._connected=False
             self._status = "Wireless interface %s not known" % self._iface
